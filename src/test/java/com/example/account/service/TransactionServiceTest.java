@@ -255,7 +255,8 @@ class TransactionServiceTest {
     void successCancelBalance() {
         //given
         AccountUser user = AccountUser.builder()
-                .id(12L).name("Pobi").build();
+                .name("Pobi").build();
+        user.setId(12L);
         Account account = Account.builder()
                 .accountUser(user)
                 .accountStatus(IN_USE)
@@ -383,7 +384,8 @@ class TransactionServiceTest {
     void cancelTransaction_CancelMustFully() {
         //given
         AccountUser user = AccountUser.builder()
-                .id(12L).name("Pobi").build();
+                .name("Pobi").build();
+        user.setId(12L);
         Account account = Account.builder()
                 .accountUser(user)
                 .accountStatus(IN_USE)
@@ -420,7 +422,8 @@ class TransactionServiceTest {
 
         //given
         AccountUser user = AccountUser.builder()
-                .id(12L).name("Pobi").build();
+                .name("Pobi").build();
+        user.setId(12L);
         Account account = Account.builder()
                 .accountUser(user)
                 .accountStatus(IN_USE)
