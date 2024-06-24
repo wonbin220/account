@@ -5,7 +5,6 @@ import com.example.account.dto.AccountInfo;
 import com.example.account.dto.CreateAccount;
 import com.example.account.dto.DeleteAccount;
 import com.example.account.service.AccountService;
-import com.example.account.service.RedisTestService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -19,19 +18,19 @@ public class AccountController {
     private final AccountService accountService;
 
     @PostMapping("/account")
-    public CreateAccount.Response createAccount(@RequestBody @Valid CreateAccount.Request request){
+    public CreateAccount.Response createAccount(@RequestBody @Valid CreateAccount.Request request) {
 
         return CreateAccount.Response.from(
                 accountService.createAccount(
-                    request.getUserId(),
-                    request.getInitialBalance()
+                        request.getUserId(),
+                        request.getInitialBalance()
                 )
         );
     }
 
     @DeleteMapping("/account")
     public DeleteAccount.Response deleteAccount(
-            @RequestBody @Valid DeleteAccount.Request request){
+            @RequestBody @Valid DeleteAccount.Request request) {
 
         return DeleteAccount.Response.from(
                 accountService.deleteAccount(
@@ -47,15 +46,15 @@ public class AccountController {
         return accountService.getAccountsByUserId(userId)
                 .stream().map(accountDto ->
                         AccountInfo.builder()
-                        .accountNumber(accountDto.getAccountNumber())
-                        .balance(accountDto.getBalance())
-                        .build())
+                                .accountNumber(accountDto.getAccountNumber())
+                                .balance(accountDto.getBalance())
+                                .build())
                 .collect(Collectors.toList());
     }
 
 
     @GetMapping("/account/{id}")
-    public Account getAccount(@PathVariable Long id){
+    public Account getAccount(@PathVariable Long id) {
         return accountService.getAccount(id);
     }
 }
